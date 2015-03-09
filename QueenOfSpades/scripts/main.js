@@ -62,14 +62,13 @@ $(document).ready(function () {
                 }
                 if (index === selectedCards.length) {
                     var result = "";
-                    if (mistakes === 0) {
-                        $("#nextStage").show();
+                    if (mistakes === 0)
                         result = Win(amount, mistakes);
-                    }
-                    else {
-                        $("#tryAgain").show();
+                    else
                         result = Loose(amount, mistakes);
-                    }
+
+                    $("#tryAgain").show();
+                    $("#nextStage").show();
 
                     startTimer(false, true);
 
