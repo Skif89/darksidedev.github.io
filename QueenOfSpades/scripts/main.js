@@ -152,9 +152,9 @@ function StartGame(selectedCards, cards, table, amount) {
     //Select several cards
     while (selectedCards.length < amount) {
         var random = Math.floor((Math.random() * cards.length) + 0);
-
-        if (selectedCards.indexOf(cards[random]) === -1)
-            selectedCards.push(cards[random]);
+        var c = cards[random];
+        if (selectedCards.indexOf(c) === -1)
+            selectedCards.push(c);
     }
     //Draw shuffled cards
     DrawCards(table, selectedCards, amount);
@@ -162,10 +162,13 @@ function StartGame(selectedCards, cards, table, amount) {
 
 function shuffle(o) {
     var result = o.slice(0);
-    for (var j, x, i = result.length; i; j = Math.floor(Math.random() * i), x = result[--i], result[i] = result[j], result[j] = x);
 
-    if (result.toString() === o.toString())
-        shuffle(o);
+    for (var i = result.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * i); // no +1 here!
+        var temp = result[i];
+        result[i] = result[j];
+        result[j] = temp;
+    }
 
     return result;
 };
