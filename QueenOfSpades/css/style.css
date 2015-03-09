@@ -102,7 +102,7 @@ body {
 #mistakes {
     color: white;
     font-size: 22px;
-    padding-top: 5px;
+    padding-top: 1em;
 }
 
 #sample_timer, #sample_countdown {
@@ -113,7 +113,12 @@ body {
 
 #tryAgain, #nextStage {
     color: white;
-    font-size: 16px;
+    font-size: 22px;
+    font-family: Verdana;   
+}
+
+#nextStage {
+    margin-left: 1em;
 }
 
 #table {
