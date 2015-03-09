@@ -158,11 +158,11 @@ function Info(amount, mistakes) {
 }
 
 function Win(amount, mistakes) {
-    return "Congratulations!<br /><br /><img src='images/thumpUp.png'><br /><br />" + Info(amount, mistakes);
+    return "Congratulations!<br /><img src='images/thumpUp.png' style='margin:1.1em;'><br />" + Info(amount, mistakes);
 }
 
 function Loose(amount, mistakes) {
-    return "You can do better!<br /><br /><img src='images/thumpDown.png'><br /><br />" + Info(amount, mistakes);
+    return "You can do better!<br /><img src='images/thumpDown.png' style='margin:1.1em;'><br />" + Info(amount, mistakes);
 }
 
 function BeforeGame(selectedCards, cards, table, amount) {
