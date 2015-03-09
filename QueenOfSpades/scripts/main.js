@@ -110,10 +110,10 @@ $(document).ready(function () {
     });
 });
 
-var restartGame = function () {
+function restartGame() {
+    BeforeGame(selectedCards, cards, $("#table"), amount);
     gameState = 0;
     seconds = startSecondsDefault;
-    BeforeGame(selectedCards, cards, $("#table"), amount);
     $("#ready").text("Start");
     $("#ready").show();
     $("#mistakes").hide();
