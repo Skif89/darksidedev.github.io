@@ -6,10 +6,13 @@ var maxAmount = 54;
 var gameState = 0;
 
 $(document).ready(function () {
-
+    
     var table = $("#table");
 
     Initialization();
+    
+    $("#CardSize").val("3");
+
     BeforeGame(selectedCards, cards, table, amount);
 
     $("#ready").bind("click", function () {
@@ -52,6 +55,10 @@ $(document).ready(function () {
         restartGame();
     }));
 
+    $("#CardSize").bind("change", (function () {
+        SetCardsSize();
+    }));
+
     $("#restart").bind("click", function () {
         restartGame();
     });
@@ -67,6 +74,15 @@ $(document).ready(function () {
         restartGame();
     });
 });
+
+function GetCardSize() {
+    return $("#CardSize").val() * 50 + 20 + 'px';
+}
+
+function SetCardsSize() {
+    var size = GetCardSize();
+    $(".card").css('width', size);
+}
 
 function CardClick(mistakes) {
     var index = 0;
@@ -101,6 +117,8 @@ function CardClick(mistakes) {
 }
 
 function Initialization() {
+   
+
     for (var i = amount; i <= maxAmount; i++)
         $("#TheNumberOfCards").append($("<option/>", {
             value: i,
@@ -112,6 +130,13 @@ function Initialization() {
         $("#DifficultyLevel").append($("<option/>", {
             value: difficulty.length - i,
             text: difficulty[i]
+        }));
+
+    var size = ["Tiny", "Small", "Medium", "Large", "Huge"];
+    for (i = 0; i < size.length; i++)
+        $("#CardSize").append($("<option/>", {
+            value: i+1,
+            text: size[i]
         }));
 }
 
@@ -125,6 +150,7 @@ function restartGame() {
     $("#nextStage").hide();
     $("#tryAgain").hide();
     startTimer(false);
+    
 }
 
 function Info(amount, mistakes) {
@@ -180,8 +206,11 @@ function shuffle(o) {
 function DrawCards(table, cards, amount) {
     table.empty();
     //Draw cards in Div
+    var size = GetCardSize();
+    //SetCardsSize();
     for (var i = 0; i < amount; i++) {
-        table.append("<img id='" + cards[i] + "' class='card' src='images/cards/" + cards[i] + "'/>");
+        table.append("<img id='" + cards[i] + "' class='card' style='width:" + size + ";' src='images/cards/" + cards[i] + "'/>");
     }
+   
 }
 
