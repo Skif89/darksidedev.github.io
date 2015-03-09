@@ -1,0 +1,100 @@
+﻿.card {
+    width: 150px;
+    margin-right: 5px;
+    border: 5px solid transparent;
+    border-radius: 5px;
+}
+
+body {
+    background-image: url(../images/809828_zelenyiy_fon.jpg);
+}
+
+.cardSelected {
+    border: 5px solid #54ea12;
+    background-color: #54ea12;
+    border-radius: 5px;
+}
+
+.ready {
+    width: 200px;
+    background-color: rgba(31, 172, 20, 0.5);
+    color: #fff;
+}
+
+    .ready:hover {
+        background-color: rgba(31, 172, 20, 0.8);
+    }
+
+.topMenu {
+    border-bottom: 2px solid #efefef;
+    float: left;
+    width: 99%;
+    padding: 10px;
+    margin: 10px;
+}
+
+.CardsNumber {
+    float: left;
+}
+
+    .CardsNumber > div {
+        width: 260px;
+    }
+
+        .CardsNumber > div > span {
+            font-size: 16px;
+        }
+
+        .CardsNumber > div > select {
+            font-size: 16px;
+        }
+
+.Difficulty {
+    float: left;
+    margin-left: 20px;
+}
+
+    .Difficulty > div {
+        width: 240px;
+    }
+
+        .Difficulty > div > span {
+            font-size: 16px;
+        }
+
+        .Difficulty > div > select {
+            font-size: 16px;
+        }
+
+.restart {
+    color: white;
+    font-size: 16px;
+    float: right;
+    background-color: transparent;
+    border: 0px;
+}
+
+    .restart:hover {
+        color: red;
+    }
+
+#mistakes {
+    color: white;
+    font-size: 22px;
+    padding-top: 5px;
+}
+
+#sample_timer, #sample_countdown {
+    font-size: 16px;
+    color: white;
+    margin-top: 10px;
+}
+
+#tryAgain, #nextStage {
+    color: white;
+    font-size: 16px;
+}
+
+#table {
+    display: inline-block;
+}
