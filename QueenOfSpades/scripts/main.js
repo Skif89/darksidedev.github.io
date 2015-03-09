@@ -9,20 +9,7 @@ $(document).ready(function () {
 
     var table = $("#table");
 
-    for (var i = amount; i <= maxAmount; i++)
-        $("#TheNumberOfCards").append($("<option/>", {
-            value: i,
-            text: i
-        }));
-
-    var difficulty = ["Low", "Medium", "Hard", "Insane"];
-
-    for (i = 0; i < difficulty.length; i++)
-        $("#DifficultyLevel").append($("<option/>", {
-            value: difficulty.length - i,
-            text: difficulty[i]
-        }));
-
+    Initialization();
     BeforeGame(selectedCards, cards, table, amount);
 
     $("#ready").bind("click", function () {
@@ -34,48 +21,19 @@ $(document).ready(function () {
             startCountdown(seconds, true, false);
         }
         else if (gameState === 1) {
+            //Clear table
+            table.empty();
+
             //Shuffle selected cards
             var shuffledCards = selectedCards.slice(0);
             shuffledCards = shuffle(shuffledCards);
-
-            //Clear table
-            table.empty();
 
             //Draw shuffled cards
             DrawCards(table, shuffledCards, amount);
 
             var mistakes = 0;
 
-            var index = 0;
-            $(".card").bind("click", function (event) {
-                if (index !== selectedCards.length) {
-                    if (event.target.id === selectedCards[index]) {
-                        $(this).addClass("cardSelected");
-                        index++;
-                    } else {
-                        if (!$(this).hasClass("cardSelected")) {
-                            mistakes++;
-                            $("#info").empty();
-                            $("#info").append("Mistakes: " + mistakes);
-                        }
-                    }
-                }
-                if (index === selectedCards.length) {
-                    var result = "";
-                    if (mistakes === 0)
-                        result = Win(amount, mistakes);
-                    else
-                        result = Loose(amount, mistakes);
-
-                    $("#tryAgain").show();
-                    $("#nextStage").show();
-
-                    startTimer(false, true);
-
-                    $("#info").empty();
-                    $("#info").append(result);
-                }
-            });
+            CardClick(mistakes);
 
             $("#mistakes").show();
             $("#info").empty();
@@ -109,6 +67,53 @@ $(document).ready(function () {
         restartGame();
     });
 });
+
+function CardClick(mistakes) {
+    var index = 0;
+    $(".card").bind("click", function (event) {
+        if (index !== selectedCards.length) {
+            if (event.target.id === selectedCards[index]) {
+                $(this).addClass("cardSelected");
+                index++;
+            } else {
+                if (!$(this).hasClass("cardSelected")) {
+                    mistakes++;
+                    $("#info").empty();
+                    $("#info").append("Mistakes: " + mistakes);
+                }
+            }
+        }
+        if (index === selectedCards.length) {
+            var result = "";
+            if (mistakes === 0)
+                result = Win(amount, mistakes);
+            else
+                result = Loose(amount, mistakes);
+
+            $("#tryAgain").show();
+            $("#nextStage").show();
+            $("#info").empty();
+            $("#info").append(result);
+
+            startTimer(false, true);
+        }
+    });
+}
+
+function Initialization() {
+    for (var i = amount; i <= maxAmount; i++)
+        $("#TheNumberOfCards").append($("<option/>", {
+            value: i,
+            text: i
+        }));
+
+    var difficulty = ["Low", "Medium", "Hard", "Insane"];
+    for (i = 0; i < difficulty.length; i++)
+        $("#DifficultyLevel").append($("<option/>", {
+            value: difficulty.length - i,
+            text: difficulty[i]
+        }));
+}
 
 function restartGame() {
     BeforeGame(selectedCards, cards, $("#table"), amount);
