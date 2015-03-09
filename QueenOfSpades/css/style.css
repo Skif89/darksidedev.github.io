@@ -114,8 +114,14 @@ body {
 #tryAgain, #nextStage {
     color: white;
     font-size: 22px;
-    font-family: Verdana;   
+    font-family: Verdana;
+    border: 0;
+    background-color: transparent;
 }
+
+    #tryAgain:hover, #nextStage:hover {
+        color: #36a5c9;
+    }
 
 #nextStage {
     margin-left: 1em;
