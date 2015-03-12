@@ -5,9 +5,9 @@
     border-radius: 5px;
 }
 
-body {
-    background-image: url(../images/pyramid.gif);
-}
+/*body {
+    background-image: url(../images/carbon.jpg);
+}*/
 
 .cardSelected {
     border: 5px solid #44ae4c;

@@ -4,7 +4,8 @@ var selectedCards = [];
 var amount = 3;
 var maxAmount = 54;
 var gameState = 0;
-
+var bgImageGame1 = "random_grey_variations.png";
+var bgImageGame2 = "skulls.png";
 $(document).ready(function () {
     var table = $("#table");
     Initialization();
@@ -36,8 +37,16 @@ $(document).ready(function () {
     var numberOfCards = $("#TheNumberOfCards");
 
     $("#GameType").bind("change", (function () {
-        amount = numberOfCards.val();
+        var cardsNumber = 3;
+        numberOfCards.val(cardsNumber);
+        amount = cardsNumber;
         restartGame();
+
+        if ($(this).val() == 1)
+            $("body").css("background-image", "url('../images/" + bgImageGame1 + "')");
+        else if ($(this).val() == 2) {
+            $("body").css("background-image", "url('../images/" + bgImageGame2 + "')");
+        }
     }));
 
     numberOfCards.bind("change", (function () {
@@ -63,7 +72,6 @@ $(document).ready(function () {
 
     $("#nextStage").bind("click", function () {
         amount++;
-
         numberOfCards.val(amount);
         restartGame();
     });
@@ -82,6 +90,7 @@ function restartGame() {
 }
 
 function BeforeGame(selectedCards, cards, table, amount) {
+    
     selectedCards.length = 0;
     while (selectedCards.length < amount) {
         selectedCards.push("backside.png");
@@ -189,6 +198,8 @@ function CardClick(mistakes) {
 }
 
 function Initialization() {
+    $("body").css("background-image", "url('../images/" + bgImageGame1 + "')");
+
     for (var i = amount; i <= maxAmount; i++)
         $("#TheNumberOfCards").append($("<option/>", {
             value: i,
