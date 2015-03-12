@@ -43,9 +43,9 @@ $(document).ready(function () {
         restartGame();
 
         if ($(this).val() == 1)
-            $("body").css("background-image", "url('/images/" + bgImageGame1 + "')");
+            $("body").css("background-image", "url('images/" + bgImageGame1 + "')");
         else if ($(this).val() == 2) {
-            $("body").css("background-image", "url('/images/" + bgImageGame2 + "')");
+            $("body").css("background-image", "url('images/" + bgImageGame2 + "')");
         }
     }));
 
@@ -198,7 +198,7 @@ function CardClick(mistakes) {
 }
 
 function Initialization() {
-    $("body").css("background-image", "url('../images/" + bgImageGame1 + "')");
+    $("body").css("background-image", "url('images/" + bgImageGame1 + "')");
 
     for (var i = amount; i <= maxAmount; i++)
         $("#TheNumberOfCards").append($("<option/>", {
