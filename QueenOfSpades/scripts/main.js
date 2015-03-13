@@ -18,16 +18,29 @@ $(document).ready(function () {
     $("#ready").bind("click", function () {
         var gameType = $("#GameType").val();
         if (gameState === 0) {
+
+            switch (gameType) {
+                case "1":
+                    $("#description").text("Remember the sequence of cards.");
+                    break
+                case "2":
+                    $("#description").text("Remember the cards.");
+                    break
+            }
+
             StartGame(selectedCards, cards, table, amount);
             $(this).text("I'm ready!");
             gameState++;
             startCountdown(seconds, true, false);
+           
         } else if (gameState === 1) {
             switch (gameType) {
                 case "1":
+                    $("#description").text("Click on cards in the correct sequence.");
                     Game_CorrectSequence(table);
                     break
                 case "2":
+                    $("#description").text("Click on the extra card.");
                     Game_ExtraCards(table);
                     break
             }
@@ -78,6 +91,7 @@ $(document).ready(function () {
 });
 
 function restartGame() {
+    $("#description").html('&nbsp');
     BeforeGame(selectedCards, cards, $("#table"), amount);
     gameState = 0;
     seconds = startSecondsDefault;
@@ -90,7 +104,6 @@ function restartGame() {
 }
 
 function BeforeGame(selectedCards, cards, table, amount) {
-    
     selectedCards.length = 0;
     while (selectedCards.length < amount) {
         selectedCards.push("backside.png");
